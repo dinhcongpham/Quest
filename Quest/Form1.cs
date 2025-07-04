@@ -134,6 +134,7 @@ namespace Quest
                     ghoulHitPoints.Text = enemy.HitPoints.ToString();
                     ghoul_picture.Visible = true;
                     enemiesShown++;
+                    jsdklfjkdslldfs
                 }
             }
 
