@@ -61,6 +61,8 @@
             attack_right = new Button();
             attack_left = new Button();
             attack_up = new Button();
+            wizard_picture = new PictureBox();
+            shield_picture = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)sword_picture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ghoul_picture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ghost_picture).BeginInit();
@@ -76,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)bluePotion_equiped).BeginInit();
             ((System.ComponentModel.ISupportInitialize)redPotion_equiped).BeginInit();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)wizard_picture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)shield_picture).BeginInit();
             SuspendLayout();
             // 
             // sword_picture
@@ -94,7 +98,7 @@
             // 
             ghoul_picture.BackColor = Color.Transparent;
             ghoul_picture.Image = Properties.Resources.ghost;
-            ghoul_picture.Location = new Point(191, 61);
+            ghoul_picture.Location = new Point(119, 97);
             ghoul_picture.Name = "ghoul_picture";
             ghoul_picture.Size = new Size(30, 30);
             ghoul_picture.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -166,7 +170,7 @@
             // 
             mace_picture.BackColor = Color.Transparent;
             mace_picture.Image = Properties.Resources.mace;
-            mace_picture.Location = new Point(299, 61);
+            mace_picture.Location = new Point(263, 97);
             mace_picture.Name = "mace_picture";
             mace_picture.Size = new Size(30, 30);
             mace_picture.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -444,6 +448,30 @@
             attack_up.UseVisualStyleBackColor = true;
             attack_up.Click += attack_up_Click;
             // 
+            // wizard_picture
+            // 
+            wizard_picture.BackColor = Color.Transparent;
+            wizard_picture.Image = Properties.Resources.wizard;
+            wizard_picture.Location = new Point(155, 97);
+            wizard_picture.Name = "wizard_picture";
+            wizard_picture.Size = new Size(30, 30);
+            wizard_picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            wizard_picture.TabIndex = 25;
+            wizard_picture.TabStop = false;
+            wizard_picture.Visible = false;
+            // 
+            // shield_picture
+            // 
+            shield_picture.BackColor = Color.Transparent;
+            shield_picture.Image = Properties.Resources.shield;
+            shield_picture.Location = new Point(227, 97);
+            shield_picture.Name = "shield_picture";
+            shield_picture.Size = new Size(30, 30);
+            shield_picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            shield_picture.TabIndex = 26;
+            shield_picture.TabStop = false;
+            shield_picture.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -451,6 +479,8 @@
             BackgroundImage = Properties.Resources.dungeon600x400;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(818, 401);
+            Controls.Add(shield_picture);
+            Controls.Add(wizard_picture);
             Controls.Add(attack_down);
             Controls.Add(attack_right);
             Controls.Add(attack_left);
@@ -495,6 +525,8 @@
             ((System.ComponentModel.ISupportInitialize)redPotion_equiped).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)wizard_picture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)shield_picture).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -534,5 +566,7 @@
         private Button attack_right;
         private Button attack_left;
         private Button attack_up;
+        private PictureBox wizard_picture;
+        private PictureBox shield_picture;
     }
 }
