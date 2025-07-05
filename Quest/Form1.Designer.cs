@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             sword_picture = new PictureBox();
             ghoul_picture = new PictureBox();
             ghost_picture = new PictureBox();
@@ -63,6 +64,8 @@
             attack_up = new Button();
             wizard_picture = new PictureBox();
             shield_picture = new PictureBox();
+            timer = new System.Windows.Forms.Timer(components);
+            progress_time = new ProgressBar();
             ((System.ComponentModel.ISupportInitialize)sword_picture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ghoul_picture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ghost_picture).BeginInit();
@@ -472,6 +475,19 @@
             shield_picture.TabStop = false;
             shield_picture.Visible = false;
             // 
+            // timer
+            // 
+            timer.Enabled = true;
+            timer.Interval = 10;
+            timer.Tick += timer_Tick;
+            // 
+            // progress_time
+            // 
+            progress_time.Location = new Point(197, 12);
+            progress_time.Name = "progress_time";
+            progress_time.Size = new Size(228, 29);
+            progress_time.TabIndex = 28;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -479,6 +495,7 @@
             BackgroundImage = Properties.Resources.dungeon600x400;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(818, 401);
+            Controls.Add(progress_time);
             Controls.Add(shield_picture);
             Controls.Add(wizard_picture);
             Controls.Add(attack_down);
@@ -568,5 +585,7 @@
         private Button attack_up;
         private PictureBox wizard_picture;
         private PictureBox shield_picture;
+        private System.Windows.Forms.Timer timer;
+        private ProgressBar progress_time;
     }
 }

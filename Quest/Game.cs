@@ -17,12 +17,12 @@ namespace Quest
         public List<Weapon> WeaponInRoom;
 
         private Player player;
-        public Point PlayerLocation { get {  return player.Location; } }
-        public int PlayerHitPoints { get { return player.HitPoints; } }
-        public List<Weapon> PlayerWeapons { get { return player.Weapons; } }
+        public Point PlayerLocation { get {  return player.Location; } set { player.Location = value; } }
+        public int PlayerHitPoints { get { return player.HitPoints; } set { player.HitPoints = value; } }
+        public List<Weapon> PlayerWeapons { get { return player.Weapons; } set { player.Weapons = value; } }
 
         private int level = 0;
-        public int Level { get { return level; } }
+        public int Level { get { return level; } set { level = value; } }
 
         private Rectangle boundaries;
         public Rectangle Boundaries { get { return boundaries; } }
@@ -95,6 +95,13 @@ namespace Quest
                 boundaries.Left + randomX * 10,
                 boundaries.Top + randomY * 10
             );
+        }
+
+        public void ReStartGame()
+        {
+            level = 0;
+            PlayerLocation = new Point(boundaries.Right - 20, (boundaries.Top + boundaries.Bottom) / 2 + 9);
+            NewLevel(new Random());
         }
 
 

@@ -7,6 +7,8 @@ namespace Quest
     {
         private Game game;
         private Random random = new Random();
+        private int GameTime = 120;
+        private Rectangle boundaries = new Rectangle(78, 57, 420, 155);
 
         public Form1()
         {
@@ -14,11 +16,42 @@ namespace Quest
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
-            this.KeyPreview = true;     
+            this.KeyPreview = true;
             this.KeyDown += Form1_KeyDown;
+            timer.Interval = 1000;
+            timer.Tick += timer_Tick;
+            progress_time.Minimum = 0;
+            progress_time.Maximum = GameTime;
+            progress_time.Value = GameTime;
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            GameTime -= 1;
+
+            if (progress_time.Value > 0)
+                progress_time.Value = GameTime;
+
+            if (GameTime <= 0)
+            {
+                timer.Stop();
+                var result = MessageBox.Show("Time's up! Do you want to restart the game?",
+                                             "Time Over",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    ReStartGame();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer.Start();
             game = new Game(new Rectangle(78, 57, 420, 155));
             game.NewLevel(random);
             this.Text = game.Level.ToString();
@@ -94,9 +127,19 @@ namespace Quest
 
             if (game.PlayerHitPoints <= 0)
             {
-                MessageBox.Show("You have been defeated! Game Over.");
-                Application.Exit();
-                return;
+                var result = MessageBox.Show("You have died! Game Over.\nDo you want to restart?",
+                                              "Game Over",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    ReStartGame();  
+                }
+                else
+                {
+                    Application.Exit(); 
+                }
             }
         }
 
@@ -140,7 +183,9 @@ namespace Quest
             if (enemiesShown < 1)
             {
                 MessageBox.Show("You have defeated all the enemies in this level!");
+                game.PlayerLocation = new Point(boundaries.Right - 20, (boundaries.Top + boundaries.Bottom) / 2 + 9);
                 game.NewLevel(random);
+                GameTime = 120;
                 this.Text = game.Level.ToString();
                 UpdateCharacters();
             }
@@ -269,6 +314,20 @@ namespace Quest
             mace_equiped.BorderStyle = BorderStyle.None;
             bluePotion_equiped.BorderStyle = BorderStyle.None;
             redPotion_equiped.BorderStyle = BorderStyle.None;
+        }
+
+        private void ReStartGame()
+        {
+            timer.Stop();
+            GameTime = 120;
+            clear_picked_weapons();
+            progress_time.Value = GameTime;
+            game.ReStartGame();
+            game.PlayerWeapons.Clear();
+            game.PlayerHitPoints = 10;
+            this.Text = game.Level.ToString();
+            UpdateCharacters();
+            timer.Start();
         }
     }
 }

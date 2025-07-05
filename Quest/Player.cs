@@ -11,7 +11,7 @@ namespace Quest
     {
         private Weapon? equippedWeapon;
         private int hitPoints;
-        public int HitPoints { get { return hitPoints; } }
+        public int HitPoints { get { return hitPoints; } set { hitPoints = value; } }
 
         private List<Weapon> inventory = new List<Weapon>();
         public List<Weapon> Weapons
@@ -19,6 +19,10 @@ namespace Quest
             get
             {
                 return inventory;
+            }
+            set
+            {
+                inventory = value;
             }
         }
 
