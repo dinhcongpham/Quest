@@ -29,7 +29,7 @@ namespace Quest
         public Player(Game game, Point location)
             : base(game, location)
         {
-            hitPoints = 10;
+            hitPoints = 100;
         }
 
         public void Hit(int maxDamage, Random random)
