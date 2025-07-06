@@ -104,6 +104,10 @@ namespace Quest
             NewLevel(new Random());
         }
 
+        public bool IsLastLevel()
+        {
+            return level == 7;
+        } 
 
         public void NewLevel(Random random)
         {
@@ -152,7 +156,6 @@ namespace Quest
                         WeaponInRoom.Add(new RedPotion(this, GetRandomLocation(random)));
                     break;
                 case 8:
-                    MessageBox.Show("Congratulations! You have completed the game!");
                     break;
                 default:
                     break;

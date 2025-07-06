@@ -184,6 +184,24 @@ namespace Quest
             {
                 MessageBox.Show("You have defeated all the enemies in this level!");
                 game.PlayerLocation = new Point(boundaries.Right - 20, (boundaries.Top + boundaries.Bottom) / 2 + 9);
+
+                if (game.IsLastLevel())
+                {
+                    var result = MessageBox.Show("You have done all level! Game Over.\nDo you want to play again?",
+                              "Game End",
+                              MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        ReStartGame();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+                }
+
                 game.NewLevel(random);
                 GameTime = 120;
                 this.Text = game.Level.ToString();
